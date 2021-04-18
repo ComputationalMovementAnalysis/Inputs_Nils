@@ -1,0 +1,34 @@
+---
+title: "Version Control"
+subtitle: ""
+author: "Nils Ratnaweera"
+# institute: "RStudio, PBC"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, custom.css]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: center, middle
+
+# Why Version Control?
+
+<div id = "titleimage"></div>
+
+--
+
+1. Time Travel
+
+--
+
+2. Collaboration
+
+--
+
+3. Community
+
+

@@ -1,0 +1,9 @@
+#titleimage {
+   content:url(images/01_stream_channels_sauk_river_16_9.webp);
+   background-size: cover;
+   position: absolute;
+   top: 0;
+   left: 0;
+   opacity: 0.3;
+}
+
