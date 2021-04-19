@@ -1,23 +1,52 @@
 ---
-title: "Version Control"
+title: "Exercise submissions with <br> Git and Github"
 subtitle: ""
 author: "Nils Ratnaweera"
-# institute: "RStudio, PBC"
 date: "`r Sys.Date()`"
 output:
+# https://stackoverflow.com/questions/51793049/xaringan-title-slide/51800826#51800826
   xaringan::moon_reader:
-    css: [default, custom.css]
+    css: ["default", "custom.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      ratio: "16:9"
+---
+class: center, middle, inverse
+
+
+```{r, include=FALSE}
+library(fontawesome)
+```
+
+
+# What is this about? 
+
+---
+
+# What is this about?
+
+- Submit of 2 (of 5) R-exercises
+- Submit one Semester project
+
+--
+
+<em class = "center"> We will use git and github for these submissions! </em>
+
 ---
 class: center, middle
 
-# Why Version Control?
+# Why Version Control? `r fontawesome::fa('git-alt')`
 
 <div id = "titleimage"></div>
+
+---
+
+
+
+# Why git / github?
 
 --
 
@@ -30,5 +59,22 @@ class: center, middle
 --
 
 3. Community
+
+
+---
+
+# Why git / github?
+
+
+.left-column[
+1. Safety
+2. Collaboration
+3. Community
+]
+
+.right-column[
+
+
+]
 
 
