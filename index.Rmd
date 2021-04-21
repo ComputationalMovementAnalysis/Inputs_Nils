@@ -20,7 +20,21 @@ layout: true
 
 ```{r, include=FALSE}
 library(fontawesome)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(forcats)
+library(ggtext)
+library(purrr)
 # knitr::opts_chunk$set(dev.args = list(png = list(bg = "transparent")),fig.ext="png")
+
+
+mytheme <- theme(
+        panel.background = element_rect(fill = "#272822",colour = "#272822"),
+        plot.background = element_rect(fill = "#272822",colour = "#272822"),
+        )
+
+
 ```
 
 
@@ -32,16 +46,16 @@ class: center, middle
 ---
 
 
-In this course you will submit some R-related Materials: 
+In this course you will submit some `R`-related materials: 
 
-- two (of five) R-exercises
-- one Semester project
+- two R-exercises
+- one semester project
 
 --
 
 <br>
 <br>
-<em class = "center" style = "font-size: 150%;"> We will use git and github for these submissions! </em>
+<em class = "center" style = "font-size: 150%;"> You will use git with github for these submissions! </em>
 
 ---
 layout: true
@@ -101,21 +115,278 @@ A typical project might look something like this.
 
 ---
 
-<div  class = "right-column">
-<img src = "images/phd_a_story-in-filenames.gif" style = "height: 400px;">
-<p class = "imgdesc">Credit: Jorge Cham phdcomics.com</p>
-<div>
+.right-column[
+
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+
+
+
+
+phdcomics_dat <- tibble(
+  x = 1:6,
+  y = 1,
+  xstart = lag(x),
+  xend = x-0.15,
+  filename = paste0("FINAL",c("", "_rev2", "_rev.6.COMMENTS", "_rev.8.comments5","_rev.18.comments7.corrections9.MORE.30", "_rev.22.comments49.corrections.10...."),".doc"),
+  sha1 = map_chr(1:6, ~paste(sample(c(as.character(1:9),letters[1:6]),40,TRUE),collapse = "")),
+  revert = c(rep(TRUE,2),rep(FALSE,4)),
+  good = c(TRUE, TRUE, FALSE, TRUE, TRUE, TRUE)
+) 
+
+
+phd_plot_fun <- function(data){
+
+  data %>%
+    ggplot(aes(x = x, y = y, label = label, alpha = alpha)) +
+    geom_segment(aes(x = xstart, xend = xend, yend = y), arrow = arrow(length = unit(0.5, "lines")), linejoin='mitre', size = 1) +
+    geom_point(pch = 21, size = 4, fill = "#F92672") +
+    geom_richtext(hjust = 0, angle = 45,size = 2.5, vjust = 0.5,nudge_x = 0.1, nudge_y = 0.1, fill = "grey", label.colour = "grey") +
+    coord_cartesian(clip = "off") +
+    lims(x = c(1,8), y = c(1,8)) +   
+    theme_void() +
+    mytheme +
+    theme(legend.position = "none")
+}
+
+
+phdcomics_plot <- phdcomics_dat %>%
+  mutate(
+    label = filename,
+    alpha = NA
+    ) %>%
+  phd_plot_fun()
+  
+  
+
+phdcomics_plot
+
+```
+
+]
 
 
 ???
 
 
-- Which leads to this type of file naming
-- However, this type of version control is linear and the changes depend on each other. 
-- I.e. if you want to undo the changes in file "data_2010.05.25_huh??.dat", you will have to manually find the difference to the previouse file, and undo this in the newest version of the file.
-- This can be somewhat solved by using a software that automates this for you (e.g. Dropbox, GoogleDrive)
- 
 
+- Which leads to this type of file naming
+- However, this type of version control is strictly linear and the changes depend on each other. 
+
+
+---
+.right-column[
+
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+phdcomics_dat %>%
+  mutate(
+    label = filename,
+    alpha = good
+  ) %>%
+  phd_plot_fun()
+
+```
+
+]
+
+???
+
+- I.e. if you want to undo the changes made from "_rev2" to "_rev.6.COMMENTS", you will have to manually find the difference to the previous file, and undo this in the newest version of the file.
+
+
+---
+.right-column[
+
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+
+
+phdcomics_dat %>%
+  mutate(
+    label = filename,
+    alpha = revert
+  ) %>%
+  phd_plot_fun()
+
+```
+
+]
+
+
+???
+
+this becomes extremely complicated: 
+
+- with more files: Imagine two changes in two different files depend on each other
+- with more people: Imagine collaborating with others
+
+---
+
+.right-column[
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+phdcomics_plot
+
+```
+
+]
+
+--
+<div class = "right-column">
+What information is captured:
+ <ul>
+  <li>A unique identifier for each change (the filename)</li>
+  <li>Limited information on why was the change made</li>
+</ul> 
+
+</div>
+
+
+???
+
+
+What this type of version control attempts, is to capture the following information:
+
+- A unique identifier for the change (Filename)
+- Information on why the change was made ("corrections 9")
+
+
+---
+
+.right-column[
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+phdcomics_plot
+
+```
+
+]
+
+<div class = "right-column">
+What information is missing:
+ <ul>
+  <li>What changed?</li>
+  <li>When was the change made?</li>
+  <li>Who made the change?</li>
+</ul> 
+
+</div>
+
+
+???
+
+What is lacking:
+
+- files must be manually compared
+- is implicitly captured by the system, but is not reliable
+- very important when collaborating
+
+
+
+---
+
+
+.right-column[
+
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+phdcomics_dat %>%
+  mutate(
+    label = sha1,
+    alpha = NA
+  ) %>%
+  phd_plot_fun() 
+```
+
+]
+
+
+<div class = "right-column">
+If we switch to git for version control:
+ <ul>
+  <li>Changes are captured with <em>commits </em></li>
+  <li>Commits are identifed uniquely with sha1 hashes</li>
+  <li>These hashes are generated automatically</li>
+  <li>The filenames remain unchanged</li>
+</ul> 
+
+</div>
+
+???
+
+- sha1 hashes are guaranteed to be unique
+- are usually abbreviated to the first 6 characters
+---
+
+.right-column[
+
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+
+
+phdcomics_dat %>%
+  mutate(
+    label = substr(sha1,1,6),
+    alpha = NA
+  ) %>%
+  phd_plot_fun()
+
+```
+
+]
+
+--
+<div class = "right-column">
+<ul>
+<li>Each commit captures the following information <em>automatically</em></li>
+ <ul>
+  <li>Unique identifier (SHA-1)</li>
+  <li>Who made the commit?</li>
+  <li>When was the commit made?</li>
+  <li>What changed <em> precisely </em>?</li>
+</ul> 
+<li>Each commit requires the user to input information on why the change was made</li>
+</ul>
+
+
+</div>
+
+???
+
+
+---
+
+
+.right-column[
+
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+phdcomics_dat %>%
+  mutate(
+    label = substr(sha1,1,6),
+    alpha = good
+  ) %>%
+  phd_plot_fun()
+```
+
+]
+
+
+
+
+---
+.right-column[
+
+```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
+phdcomics_dat %>%
+  filter(good) %>%
+  mutate(
+    label = substr(sha1,1,6),
+    xstart = lag(x),
+    xend = x-0.15,
+    alpha = NA,
+  ) %>%
+  phd_plot_fun()
+```
+
+]
+
+
+???
+- This can be somewhat solved by using a software that automates this for you (e.g. Dropbox, GoogleDrive)
 
 ---
 
@@ -124,7 +395,7 @@ A typical project might look something like this.
 Dropbox, Googledrive *et al.* are not designed for code since files are tracked: 
 
 - individually
-- continuously
+- continuously (`r fa("video")`-mode)
 - uncommented
 ]
 
@@ -135,7 +406,7 @@ Dropbox, Googledrive *et al.* are not designed for code since files are tracked:
 With git however, tracking changes is
 
 - <del>individually</del> individually *and* on a project basis
-- <del>continuously</del> with "snapshots" (aka "commmits")
+- <del>continuously (`r fa("video")`-mode)</del> with "snapshots" ( `r fa("camera-retro")`-mode, aka "commmits")
 - <del>uncommented</del> with comments
 ]
 
@@ -172,17 +443,13 @@ layout: true
 <div  class = "right-column">Git makes collaboration smoother</div>
 ---
 
-.right-column[
+<div  class = "right-column">
+<p> Git repositories can easily be synced with Git servers</p>
+<img src = "images/gitHub.png" width = 500>
+<p class = "imgdesc">Credit: dzone.com</p>
+<div>
 
-
-Each change is documented with the following information: 
-- What changed?
-- When did the change happen?
-- Who made the change?
-- Why was the change made?
-]
-
---
+---
 
 <div  class = "right-column">
 Change tracking works online as well as offline
@@ -276,24 +543,27 @@ Git != Github
 
 ```{r, echo = FALSE, message = FALSE, dpi=300, fig.height=2}
 
-library(ggplot2)
-library(readr)
-library(dplyr)
+
+
+
+
 read_csv("CRAN_str_detect.csv") %>%
   mutate(domain = fct_reorder(domain, n)) %>%
   ggplot(aes(n, domain)) +
   geom_col(fill = "#F92672") +
   scale_x_continuous(expand = c(0,0)) +
   labs(y = "", x = "", subtitle = "Number of Packages per Domain hosted on CRAN:") +
-  theme(panel.grid = element_blank(),
-        axis.ticks = element_blank(),
-        panel.background = element_rect(fill = "#272822",colour = "#272822"),
-        plot.background = element_rect(fill = "#272822",colour = "#272822"),
-        legend.position = "none",
-        plot.title.position = "plot",
-        text = element_text(colour = "#d6d6d6"),
-        axis.text = element_text(colour = "#d6d6d6")
-        )
+  mytheme +
+  theme(
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    legend.position = "none",
+    plot.title.position = "plot",
+    text = element_text(colour = "#d6d6d6"),
+    axis.text = element_text(colour = "#d6d6d6")
+  )
+
+
 
 
 ```
@@ -313,13 +583,47 @@ class: center, middle
 
 <div class = "quote">
 <div>
-- Is it going to hurt? <br>
-- Yes <br>
-<div>
-<div style = "quoteauthor">
-- Jenny Brian in happygitwithr (2020)
-<div>
+&gt; Is it going to hurt? <br/>
+&gt; <em>Yes</em <br>
 </div>
+<div class = "quoteauthor">
+- Jenny Brian in happygitwithr (2020)
+</div>
+</div>
+
+---
+
+
+- Learning Git is quite challenging an can cause some initial pain
+
+--
+
+- You will need to develop a new workflow when coding (*committing* changes explicitly)
+
+--
+
+- You will need to learn new terminology (stage, commit, push, pull...)
+
+--
+
+- you will need to invest some time upfront:
+
+--
+
+  - Install the Git-software on your computer
+
+--
+
+  - Setup RStudio to work with Git
+
+--
+
+  - Create a Github account
+
+
+???
+
+
 
 
 

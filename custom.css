@@ -55,6 +55,7 @@ h1, h2, h3 {
 .quote{
    position: absolute; 
    width: 50%; 
+   left: 25%;
    background-color: grey; 
    border-radius: 20px; 
    border-color: black;
