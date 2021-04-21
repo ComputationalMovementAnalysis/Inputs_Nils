@@ -48,7 +48,7 @@ class: center, middle
 
 In this course you will submit some `R`-related materials: 
 
-- two R-exercises
+- two R-exercises (exercise 2 and 3)
 - one semester project
 
 --
@@ -165,75 +165,12 @@ phdcomics_plot
 ]
 
 
-???
-
-
-
-- Which leads to this type of file naming
-- However, this type of version control is strictly linear and the changes depend on each other. 
-
-
----
-.right-column[
-
-```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
-phdcomics_dat %>%
-  mutate(
-    label = filename,
-    alpha = good
-  ) %>%
-  phd_plot_fun()
-
-```
-
-]
-
-???
-
-- I.e. if you want to undo the changes made from "_rev2" to "_rev.6.COMMENTS", you will have to manually find the difference to the previous file, and undo this in the newest version of the file.
-
-
----
-.right-column[
-
-```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
-
-
-phdcomics_dat %>%
-  mutate(
-    label = filename,
-    alpha = revert
-  ) %>%
-  phd_plot_fun()
-
-```
-
-]
-
-
-???
-
-this becomes extremely complicated: 
-
-- with more files: Imagine two changes in two different files depend on each other
-- with more people: Imagine collaborating with others
-
----
-
-.right-column[
-```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
-phdcomics_plot
-
-```
-
-]
-
 --
 <div class = "right-column">
-What information is captured:
+Information is captured via the filename
  <ul>
-  <li>A unique identifier for each change (the filename)</li>
-  <li>Limited information on why was the change made</li>
+  <li>A unique identifier for each change</li>
+  <li>Why was the change made</li>
 </ul> 
 
 </div>
@@ -241,12 +178,9 @@ What information is captured:
 
 ???
 
-
-What this type of version control attempts, is to capture the following information:
-
-- A unique identifier for the change (Filename)
-- Information on why the change was made ("corrections 9")
-
+this becomes extremely complicated: 
+- with more files: Imagine two changes in two different files depend on each other
+- with more people: Imagine collaborating with others
 
 ---
 
@@ -297,11 +231,10 @@ phdcomics_dat %>%
 
 
 <div class = "right-column">
-If we switch to git for version control:
+If we switch to Git for version control:
  <ul>
   <li>Changes are captured with <em>commits </em></li>
-  <li>Commits are identifed uniquely with sha1 hashes</li>
-  <li>These hashes are generated automatically</li>
+  <li>Commits are identifed uniquely with automatically generated sha1 hashes</li>
   <li>The filenames remain unchanged</li>
 </ul> 
 
@@ -348,65 +281,35 @@ phdcomics_dat %>%
 ???
 
 
----
 
-
-.right-column[
-
-```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
-phdcomics_dat %>%
-  mutate(
-    label = substr(sha1,1,6),
-    alpha = good
-  ) %>%
-  phd_plot_fun()
-```
-
-]
-
-
-
-
----
-.right-column[
-
-```{r, echo = FALSE, dpi = 300, fig.height=2, warning=FALSE}
-phdcomics_dat %>%
-  filter(good) %>%
-  mutate(
-    label = substr(sha1,1,6),
-    xstart = lag(x),
-    xend = x-0.15,
-    alpha = NA,
-  ) %>%
-  phd_plot_fun()
-```
-
-]
-
-
-???
 - This can be somewhat solved by using a software that automates this for you (e.g. Dropbox, GoogleDrive)
 
 ---
 
-
+<div class = "right-column">
+What about Dropbox, Googledrive <em>et al.</em>?
+</div>
+--
 .right-column[
-Dropbox, Googledrive *et al.* are not designed for code since files are tracked: 
+These type of software are not designed for code since files are tracked: 
 
 - individually
-- continuously (`r fa("video")`-mode)
+- continuously
 - uncommented
 ]
 
 
 ---
 
+<div class = "right-column">
+What about Dropbox, Googledrive <em>et al.</em>?
+</div>
+
 .right-column[
 With git however, tracking changes is
 
 - <del>individually</del> individually *and* on a project basis
-- <del>continuously (`r fa("video")`-mode)</del> with "snapshots" ( `r fa("camera-retro")`-mode, aka "commmits")
+- <del>continuously</del> with "snapshots" (aka "commmits")
 - <del>uncommented</del> with comments
 ]
 
@@ -444,10 +347,14 @@ layout: true
 ---
 
 <div  class = "right-column">
-<p> Git repositories can easily be synced with Git servers</p>
+<p> Git repositories can easily be synced with Git servers (e.g. GitHub, Bitbucket or Gitlab)</p>
 <img src = "images/gitHub.png" width = 500>
 <p class = "imgdesc">Credit: dzone.com</p>
 <div>
+
+???
+
+Note: Github != Git
 
 ---
 
@@ -494,33 +401,6 @@ You get accesss to a great community
 ---
 
 
---
-
-<div  class = "right-column">
-Git is used on <em>many*</em> different hosting platforms <br>
-<br>
-(e.g. Amazon AWS CodeCommit, Assembla, Beanstalk, Bitbucket, Codebase, Fog Creek Kiln, Download Now for Free, GitHub, GitLab, Launchpad, Microsoft Azure DevOps, Planio, Perforce, RhodeCode, SourceForge)
-</div>
-
-
-
-
-<!-- <div  class = "right-column" style = "display: flex"> -->
-<!-- <div><img src = "images/pngegg.png" height = "80" style = ""></div> -->
-<!-- <div><img src = "images/kisspng-bitbucket-logo-stash-atlassian-bamboo-agencia-de-marketing-digital-en-mxico-y-latinoam-5b767322e27042.0213070515344893789275.png" height = "80"></div> -->
-<!-- <div><img src = "images/gitlab-logo-white-rgb2.png" height = "80"></div> -->
-
-</div>
-
-
---
-
-<div  class = "right-column">
-Git != Github
-</div>
-
----
-
 .right-column[
 - We will use Github in as a hosting platform in this course
 - In addition to hosting Git repos, Github is a social media platform for geeks. You can:
@@ -542,11 +422,6 @@ Git != Github
 - Having an account on Github gives us direct access to the package developers
 
 ```{r, echo = FALSE, message = FALSE, dpi=300, fig.height=2}
-
-
-
-
-
 read_csv("CRAN_str_detect.csv") %>%
   mutate(domain = fct_reorder(domain, n)) %>%
   ggplot(aes(n, domain)) +
@@ -562,13 +437,13 @@ read_csv("CRAN_str_detect.csv") %>%
     text = element_text(colour = "#d6d6d6"),
     axis.text = element_text(colour = "#d6d6d6")
   )
-
-
-
-
 ```
 
 ]
+
+???
+
+Does everyone know what CRAN is?
 
 ---
 layout: true
@@ -623,7 +498,23 @@ class: center, middle
 
 ???
 
+---
+layout: true
 
+# Next steps
+
+---
+
+- You will not be needing Git and Github today! This input is a preperation for next week
+- In preparation for submitting the `R` exercise 2 with Git / Github, do the following:
+
+  - Create a Github account if you don't have one already. Some tips on choosing a name:
+    - consider incorporating your actual name
+    - make sure you are comfortable revealing it to a future boss
+    - shorter > longer
+    - make it timeless
+- Decide if you want are motivated enough to set up everything on your local computer (laptop) or if you want to take the easy route and work on the server
+  - we recommend working on your local computer, but are limited to how much we can specifically help in case of installation problems
 
 
 
