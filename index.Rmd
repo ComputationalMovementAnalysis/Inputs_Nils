@@ -105,7 +105,7 @@ layout: true
 ---
 
 <div  class = "right-column">
-<img src = "images/phd101212s.gif" style = "height: 400px;">
+<img src = "images/phd101212s.gif" style = "height: 490px;">
 <p class = "imgdesc">Credit: Jorge Cham phdcomics.com</p>
 <div>
 
@@ -494,7 +494,7 @@ class: center, middle
 
 --
 
-  - Create a Github account (next week)
+  - Create a Github account
 
 
 ???
@@ -502,15 +502,15 @@ class: center, middle
 ---
 layout: true
 
-# Next steps
+# Today's Goals
 
 ---
 
-Our goals for today: 
+
 
 1. Installing Git on your local computer <sup>1</sup>
 2. Setting up RStudio to work with Git <sup>1</sup>
-3. Initialize an RStudio project (exercise 1) with Git-Version control
+3. Initialize an RStudio project with Git-Version control (for exercise 1) 
 4. Work on exercise 1 and commit changes to your local repository
 
 --
