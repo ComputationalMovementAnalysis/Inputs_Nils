@@ -16,6 +16,7 @@ output:
 ---
 layout: true
 
+
 # What is this about?
 
 ```{r, include=FALSE}
@@ -519,18 +520,6 @@ Our goals for today:
 
 Steps 1 - 3 are described in section [Exercise 1/Preperation](https://computationalmovementanalysis.github.io/W01_04_preperations.html), step 4 is described in [Exercise 1/ Tasks and inputs](https://computationalmovementanalysis.github.io/W01_05_tasks_and_inputs.html)
 ]
-
-
-<!-- - In preparation for submitting the `R` exercise 2 with Git / Github, do the following: -->
-
-<!--   - Create a Github account if you don't have one already. Some tips on choosing a name: -->
-<!--     - consider incorporating your actual name -->
-<!--     - make sure you are comfortable revealing it to a future boss -->
-<!--     - shorter > longer -->
-<!--     - make it timeless -->
-<!-- - Decide if you want are motivated enough to set up everything on your local computer (laptop) or if you want to take the easy route and work on the server -->
-<!--   - we recommend working on your local computer, but are limited to how much we can specifically help in case of installation problems -->
-
 
 
 
