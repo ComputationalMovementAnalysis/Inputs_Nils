@@ -36,6 +36,9 @@ mytheme <- theme(
         )
 
 
+
+xaringanExtra::use_share_again()
+
 ```
 
 
