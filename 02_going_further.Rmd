@@ -1,0 +1,44 @@
+---
+title: "Going further with Git"
+subtitle: ""
+author: "Nils Ratnaweera"
+date: "`r Sys.Date()`"
+output:
+# https://stackoverflow.com/questions/51793049/xaringan-title-slide/51800826#51800826
+  xaringan::moon_reader:
+    css: ["default", "custom.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+layout: true
+
+# Going further with Git
+
+---
+class: center, middle
+
+--
+
+... and reaping the benefits of our hard work
+ 
+---
+
+- You have put much effort into learning git
+- Many advantages will only reveal themselves with time
+- Let's have a look at some advantages you can reap *now*
+
+---
+
+- Combining Rmarkdown with Github pages
+- making a pull request to suggest some changes
+- 
+
+
+
+
+
+
