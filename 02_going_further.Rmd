@@ -19,6 +19,44 @@ layout: true
 # Going further with Git
 
 ---
+
+## What's your gain from this course?
+
+(since we only cover a fraction of Git's functionalities)
+
+
+---
+
+## What's your gain from this course?
+
+(we help you tackle the initial hurdles)
+
+- understanding Git's concept
+- getting Git working locally
+- Setting up a workflow with Github
+
+
+---
+
+## What are the <span class="highlight"> most important </span> missing pieces?
+
+Working with ...
+
+1. ... Git from the commandline <span class = "highlight"> (to go beyond the basics) </span>
+1. ... pulls and merges\* <span class = "highlight"> (collaboration!) </span>
+<!-- 1. ... Git without RStudio\*  <span class = "highlight"> (to be independent)</span> -->
+1. ... branches and forks\* <span class = "highlight"> (Git's *killer features*) </span>
+
+\* depend on (1)
+
+
+---
+
+
+
+
+
+---
 class: center, middle
 
 --

@@ -67,3 +67,7 @@ h1, h2, h3 {
    text-align: right; 
    font-style: italic
 }
+
+.highlight{
+   color: #FF7A59;
+}
