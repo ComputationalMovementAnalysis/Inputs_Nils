@@ -47,6 +47,7 @@ tribble(
   "remote<br>repo", 4, "Github"
 ) %>%
   ggplot() +
+  geom_polygon(data= tibble(x = c(3.5, 4.5, 4.5, 3.5), y = c(0, 0, 5, 5)), aes(x, y), fill = "grey", alpha = 0.2) +
   geom_segment(aes(x = x,y = 0, xend = x),yend = 5)+
   geom_arrow(1,2,3.5,label = "git add") +
   geom_arrow(2,3,3.5,label = "git commit") +
