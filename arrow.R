@@ -37,37 +37,56 @@ geom_arrow <- function(xstart,xend, y, width = NULL, spanend = NULL, label = "",
     geom_richtext(x = xstart+xdelta/2, y = y, hjust = 0.5, label = label, fill = NA, label.color = NA, text.colour = "white")
     )
 
-  }
+}
 
-tribble(
-  ~label1, ~x, ~label2,
-  "working<br>directory", 1,  "your files",
-  "staging<br>area", 2, "'selected' files",
-  "local repo", 3,  "'.git'-folder",
-  "remote<br>repo", 4, "Github"
-) %>%
-  ggplot() +
-  geom_polygon(data= tibble(x = c(3.5, 4.5, 4.5, 3.5), y = c(0, 0, 5, 5)), aes(x, y), fill = "grey", alpha = 0.2) +
-  geom_segment(aes(x = x,y = 0, xend = x),yend = 5)+
-  geom_arrow(1,2,3.5,label = "git add") +
-  geom_arrow(2,3,3.5,label = "git commit") +
-  geom_arrow(3,4,3.5,label = "git push") +
-  geom_arrow(1,4,2.5,direction = "left", label = "git pull",width = 0.618046971569839,spanend = 0.333333333333333) +
-  geom_textbox(aes(x,label = label1), y= 5,
-               fill = "lightgrey", 
-               width = unit(2, "cm"),
-               height = unit(1, "cm"),
-               halign = 0.5,
-               valign = 0.5
-               ) +
-  geom_textbox(aes(x,label = label2), y= 0,
-               fill = "lightgrey", 
-               width = unit(2, "cm"),
-               height = unit(1, "cm"),
-               halign = 0.5,
-               valign = 0.5
-  )  +
-  theme_void() +
-  lims(x = c(0, 6), y = c(0, 6)) +
-  mytheme
+
+
+workflow_plot <- function(arrows, locations){
+  arrows_l <- list(
+    add = geom_arrow(1,2,3.5,label = "git add"),
+    commit = geom_arrow(2,3,3.5,label = "git commit"),
+    push = geom_arrow(3,4,3.5,label = "git push"),
+    pull = geom_arrow(1,4,2.5,direction = "left", label = "git pull",width = 0.618046971569839,spanend = 1/3)
+  )
+  
+  tribble(
+    ~label1, ~x, ~label2,
+    "working<br>directory", 1,  "your files",
+    "staging<br>area", 2, "'selected' files",
+    "local repo", 3,  "'.git'-folder",
+    "remote<br>repo", 4, "Github"
+  ) %>%
+    ggplot() +
+    {if(4 %in% locations)geom_polygon(data= tibble(x = c(3.5, 4.5, 4.5, 3.5), y = c(0, 0, 5, 5)), aes(x, y), fill = "grey", alpha = 0.2)}+
+    geom_segment(data = ~slice(., locations),aes(x = x,y = 0, xend = x),yend = 5)+
+    arrows_l[arrows] +
+    geom_textbox(data = ~slice(., locations),aes(x,label = label1), y= 5,
+                 fill = "lightgrey", 
+                 width = unit(2, "cm"),
+                 height = unit(1, "cm"),
+                 halign = 0.5,
+                 valign = 0.5
+    ) +
+    geom_textbox(data = ~slice(., locations),aes(x,label = label2), y= 0,
+                 fill = "lightgrey", 
+                 width = unit(2, "cm"),
+                 height = unit(1, "cm"),
+                 halign = 0.5,
+                 valign = 0.5
+    )  +
+    theme_void() +
+    lims(x = c(0, 6), y = c(0, 6)) +
+    mytheme  
+}
+
+
+workflow_plot("",1)
+workflow_plot("",c(1,3))
+workflow_plot("",c(1,3:4))
+workflow_plot("",c(1:4))
+workflow_plot(c("add"),c(1:4))
+workflow_plot(c("add","commit"),c(1:4))
+workflow_plot(c("add","commit", "push"),c(1:4))
+
+
   
