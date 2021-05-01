@@ -4,17 +4,21 @@ mytheme <- theme(
   panel.background = element_rect(fill = "#272822",colour = "#272822"),
   plot.background = element_rect(fill = "#272822",colour = "#272822"),
 )
-geom_arrow <- function(xstart,xend, y, width = NULL, label = "",direction = "right", colour = "black", fill = "#E16460", inherit.aes = FALSE) {
+geom_arrow <- function(xstart,xend, y, width = NULL, spanend = NULL, label = "",direction = "right", colour = "black", fill = "#E16460", inherit.aes = FALSE) {
   xdelta <- abs(xend-xstart)
   if(is.null(width)){
     width <- xdelta/1.618
     message(paste("width:",width))
   }
   
-    spanstart <- xdelta/3*2
+  if(is.null(spanend)){
+    spanend <- xdelta/3*1
+    message(paste("spanend:",spanend))
+  }
   
   
-  arrowh <- xstart + spanstart
+  
+  arrowh <- xend - spanend
   halfwidth <- width/2
   b <- width/2*3
   arroww <- b/2
@@ -36,26 +40,33 @@ geom_arrow <- function(xstart,xend, y, width = NULL, label = "",direction = "rig
   }
 
 tribble(
-  ~label, ~x, ~y,
-  "working<br>directory", 1, 5,
-  "staging<br>area", 2, 5,
-  "local repo", 3, 5,
-  "remote<br>repo", 4, 5
+  ~label1, ~x, ~label2,
+  "working<br>directory", 1,  "your files",
+  "staging<br>area", 2, "'selected' files",
+  "local repo", 3,  "'.git'-folder",
+  "remote<br>repo", 4, "Github"
 ) %>%
-  ggplot(aes(x,y,label = label)) +
-  geom_segment(aes(x = x,y = 0, xend = x, yend = y))+
+  ggplot() +
+  geom_segment(aes(x = x,y = 0, xend = x),yend = 5)+
   geom_arrow(1,2,3.5,label = "git add") +
-  geom_arrow(2,3,2.5,label = "git commit") +
-  geom_arrow(3,4,1.5,label = "git push") +
-  geom_arrow(3,4,0.5,direction = "left", label = "git pull") +
-  
-  geom_textbox(fill = "lightgrey", 
+  geom_arrow(2,3,3.5,label = "git commit") +
+  geom_arrow(3,4,3.5,label = "git push") +
+  geom_arrow(1,4,2.5,direction = "left", label = "git pull",width = 0.618046971569839,spanend = 0.333333333333333) +
+  geom_textbox(aes(x,label = label1), y= 5,
+               fill = "lightgrey", 
                width = unit(2, "cm"),
                height = unit(1, "cm"),
                halign = 0.5,
                valign = 0.5
                ) +
+  geom_textbox(aes(x,label = label2), y= 0,
+               fill = "lightgrey", 
+               width = unit(2, "cm"),
+               height = unit(1, "cm"),
+               halign = 0.5,
+               valign = 0.5
+  )  +
   theme_void() +
-  # lims(x = c(0, 6), y = c(0, 6)) +
+  lims(x = c(0, 6), y = c(0, 6)) +
   mytheme
   
