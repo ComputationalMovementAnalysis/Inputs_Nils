@@ -20,9 +20,20 @@ layout: true
 
 ---
 
+background-image: url("images/starting_journey.png")
+background-position: 50% 90%
+
+.footnote[Image credit: ibaset.com]
+
+
 ## What's your gain from this course?
 
-(since we only cover a fraction of Git's functionalities)
+???
+
+We only cover a fraction of Git's functionalities
+Enough to get you started on a journey
+
+
 
 
 ---
@@ -52,9 +63,29 @@ Working with ...
 
 ---
 
+![](images/gh1.jpg)
 
+---
 
+![](images/gh2.jpg)
+---
 
+![](images/gh3.jpg)
+---
+![](images/gh4.jpg)
+---
+![](images/gh5.jpg)
+---
+![](images/gh6.jpg)
+---
+![](images/gh7.jpg)
+---
+![](images/gh8.jpg)
+---
+![](images/gh9.jpg)
+---
+![](images/gh10.jpg)
+---
 
 ---
 class: center, middle
