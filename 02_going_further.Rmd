@@ -16,62 +16,98 @@ output:
 ---
 layout: true
 
-# Going further with Git
+# What's your gain from this course?
+
+<!-- https://www.cash.ch/sites/default/files/public/styles/main/public/images/library/woman-3261425_1920.jpg?itok=SekCL_rq&c=73b79c82a262daca25c59646369c8e1f -->
+---
+
+
+
 
 ---
 
+
+## We help you tackle the initial hurdles
+
+- Understanding Git's concept
+- Getting Git working locally
+- Setting up a workflow with Github
+
+
+---
 background-image: url("images/starting_journey.png")
-background-position: 50% 90%
+background-position: 50% 70%
 
 .footnote[Image credit: ibaset.com]
-
-
-## What's your gain from this course?
 
 ???
 
 We only cover a fraction of Git's functionalities
 Enough to get you started on a journey
 
+---
+layout: false
 
-
+# What are the missing pieces?
 
 ---
+layout: true
 
-## What's your gain from this course?
+# What are the <span class="highlight"> most important </span> missing pieces?
 
-(we help you tackle the initial hurdles)
-
-- understanding Git's concept
-- getting Git working locally
-- Setting up a workflow with Github
-
-
----
-
-## What are the <span class="highlight"> most important </span> missing pieces?
+--
 
 Working with ...
 
 1. ... Git from the commandline <span class = "highlight"> (to go beyond the basics) </span>
-1. ... pulls and merges\* <span class = "highlight"> (collaboration!) </span>
+1. ... pulls and merges <span class = "highlight"> (collaboration!) </span>
 <!-- 1. ... Git without RStudio\*  <span class = "highlight"> (to be independent)</span> -->
-1. ... branches and forks\* <span class = "highlight"> (Git's *killer features*) </span>
-
-\* depend on (1)
-
+1. ... branches and forks <span class = "highlight"> (Git's *killer features*) </span>
 
 ---
 
+## Git from the commandline
+
+- all clicks in the Git pane evoke *Git* Commands in the background
+
+--
+
+- the same commands can be called directly in the CLI<sup>1</sup> <span class = "highlight"> (and also switch back-and-forth between the GUI and the CLI) </span>
+
+.footnote[<sup>1</sup> Commandline Interface]
+
+--
+
+- e.g. `git push` pushes your changes to the repo
+
+--
+
+- Most Git tutorials assume you use Git from the CLI
+
+--
+
+- You should familiarize yourself with the most important Git terms
+
+???
+
+We will therefore cover the general git workflow including the terms
+
+---
+layout: true
+
+## Git Workflow
+
+
+
+---
 ![](images/gh1.jpg)
-
 ---
-
 ![](images/gh2.jpg)
 ---
 
 ![](images/gh3.jpg)
 ---
+
 ![](images/gh4.jpg)
 ---
 ![](images/gh5.jpg)
