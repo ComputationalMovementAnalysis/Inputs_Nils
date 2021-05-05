@@ -16,10 +16,17 @@ output:
 ---
 layout: true
 
-# What's your gain from this course?
+
+# What do you gain from Git in this course?
+
+
+
 
 <!-- https://www.cash.ch/sites/default/files/public/styles/main/public/images/library/woman-3261425_1920.jpg?itok=SekCL_rq&c=73b79c82a262daca25c59646369c8e1f -->
 ---
+class: middle
+
+background-image: url("images/lv23-1519417090.jpg")
 
 
 
@@ -35,10 +42,11 @@ layout: true
 
 
 ---
-background-image: url("images/starting_journey.png")
-background-position: 50% 70%
+background-image: url("images/salowalk-1024x659.jpg")
 
-.footnote[Image credit: ibaset.com]
+<!-- .footnote[Image credit: ibaset.com] -->
+
+.footnote[Photo by Hari Sreenivasan]
 
 ???
 
@@ -55,6 +63,9 @@ layout: true
 
 # What are the <span class="highlight"> most important </span> missing pieces?
 
+---
+
+
 --
 
 Working with ...
@@ -65,24 +76,24 @@ Working with ...
 1. ... branches and forks <span class = "highlight"> (Git's *killer features*) </span>
 
 ---
+layout: false
 
-## Git from the commandline
+# Git in the commandline (CLI)
 
 - all clicks in the Git pane evoke *Git* Commands in the background
 
 --
 
-- the same commands can be called directly in the CLI<sup>1</sup> <span class = "highlight"> (and also switch back-and-forth between the GUI and the CLI) </span>
+- the same commands can be called directly in the CLI
 
-.footnote[<sup>1</sup> Commandline Interface]
-
+<!-- <span class = "highlight"> (and also switch back-and-forth between the GUI and the CLI) </span> -->
 --
 
 - e.g. `git push` pushes your changes to the repo
 
 --
 
-- Most Git tutorials assume you use Git from the CLI
+- Most Git tutorials assume you use Git in the CLI <span class = "highlight"> or at least know the appropriate commands</span>
 
 --
 
@@ -119,6 +130,10 @@ layout: true
 ![](images/gh8.jpg)
 ---
 ![](images/gh9.jpg)
+
+???
+Especially important when you collaborate with others. Always "pull" before you "push"!
+
 ---
 ![](images/gh10.jpg)
 ---
@@ -126,21 +141,6 @@ layout: true
 ---
 class: center, middle
 
---
-
-... and reaping the benefits of our hard work
- 
----
-
-- You have put much effort into learning git
-- Many advantages will only reveal themselves with time
-- Let's have a look at some advantages you can reap *now*
-
----
-
-- Combining Rmarkdown with Github pages
-- making a pull request to suggest some changes
-- 
 
 
 
