@@ -71,3 +71,17 @@ h1, h2, h3 {
 .highlight{
    color: #FF7A59;
 }
+
+
+.crop {
+    display: block;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    width: 700px;
+    justify-content: center
+}
+
+.crop .crop2 {
+    position: absolute;
+    top: -135px; /* alter this to move up or down */
