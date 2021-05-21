@@ -2,7 +2,7 @@
 title: "Exercise submissions with <br> Git and Github"
 subtitle: ""
 author: "Nils Ratnaweera"
-date: "`r Sys.Date()`"
+date: "2021-04-23"
 output:
 # https://stackoverflow.com/questions/51793049/xaringan-title-slide/51800826#51800826
   xaringan::moon_reader:
@@ -139,6 +139,9 @@ phdcomics_dat <- tibble(
 
 
 phd_plot_fun <- function(data){
+  require(ggplot2)
+  require(ggtext)
+  require(dplyr)
 
   data %>%
     ggplot(aes(x = x, y = y, label = label, alpha = alpha)) +
