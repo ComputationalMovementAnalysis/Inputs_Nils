@@ -85,16 +85,36 @@ wildschwein_BE %>%
 <!-- If you use `summarize()` on an `sf` object (which contains spatial points in our case) it will also try to summarize all the points into one object (using a `union`). This might take a long time, and is usually not what you want. If you want to avoid this, you can use `st_drop_geometry()` before `summarize`: -->
 
 ---
+class: center, middle
 
 ## Housekeeping
 
 When working with Github, we recommend following housekeeping practices:
 
-- *Good*: Close your issues after you have read them. 
-- *Better*: Close your issues *with a comment*. 
-- *Pro*: Implement the suggestion made in the comment and reference the issue in your commit. 
-  - See example [here](https://github.com/dionisanderegg/cma-week2/issues/4)
+---
+
+### *Good*
+
+Close your issues after you have read them. 
+
+![](images/gh_good.jpg)
+
+---
+
+### *Better*
+
+Close your issues *with a comment*. 
+
+![](images/gh_better.jpg)
+
+---
+
+### *Pro*
+
+Implement the suggestion made in the comment and reference the issue in your commit. 
+  <!-- - See example [here](https://github.com/dionisanderegg/cma-week2/issues/4) -->
   
+![](images/gh_pro.jpg)
   
 ---
 
