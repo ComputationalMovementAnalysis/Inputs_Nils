@@ -97,7 +97,7 @@ When working with Github, we recommend following housekeeping practices:
 
 Close your issues after you have read them. 
 
-![](images/gh_good.jpg)
+<img src="images/gh_good.jpg" style="width:50%">
 
 ---
 
@@ -105,7 +105,7 @@ Close your issues after you have read them.
 
 Close your issues *with a comment*. 
 
-![](images/gh_better.jpg)
+<img src="images/gh_better.jpg" style="width:50%">
 
 ---
 
@@ -114,8 +114,8 @@ Close your issues *with a comment*.
 Implement the suggestion made in the comment and reference the issue in your commit. 
   <!-- - See example [here](https://github.com/dionisanderegg/cma-week2/issues/4) -->
   
-![](images/gh_pro.jpg)
-  
+<img src="images/gh_pro.jpg" style="width:50%">
+
 ---
 
 ## Tidyverse vs. Base-R
