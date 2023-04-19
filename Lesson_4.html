@@ -84,10 +84,10 @@
 				<p class="left">instead of writing: </p>
 
 				<pre><code data-trim class="r" data-line-numbers="">
-						wildschwein <- wildschwein %>%
-							group_by(TierID) %>% 
-							mutate(timelag_sec = as.numeric(...) %>% 
-							mutate(timelag_min = as.numeric(....) %>% 
+						wildschwein <- wildschwein |>
+							group_by(TierID) |> 
+							mutate(timelag_sec = as.numeric(...) |> 
+							mutate(timelag_min = as.numeric(....) |> 
 							mutate(timelag_hours = as.numeric(...) 
 					</code></pre>
 
@@ -96,8 +96,8 @@
 					<p class="left">you can write this:</p>
 
 					<pre><code data-trim class="r" data-line-numbers="">
-							wildschwein <- wildschwein %>%
-							group_by(TierID) %>% 
+							wildschwein <- wildschwein |>
+							group_by(TierID) |> 
 							mutate(
 							  timelag_sec = as.numeric(....),
 							  timelag_min=as.numeric(...),
@@ -124,9 +124,9 @@
 				</ul>
 
 				<pre class="fragment"><code data-trim class="r" data-line-numbers="">
-						wildschwein_BE %>% 
-							st_drop_geometry() %>%   #<- removes the geometry column
-							group_by(TierID) %>% 
+						wildschwein_BE |> 
+							st_drop_geometry() |>   #<- removes the geometry column
+							group_by(TierID) |> 
 							summarise(mindate = min(DatetimeUTC)) 
 					</code></pre>
 

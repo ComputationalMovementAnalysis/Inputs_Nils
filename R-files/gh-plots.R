@@ -68,7 +68,7 @@ workflow_plot <- function(arrows, locations, output = NULL){
     "staging<br>area", 2, "'selected' files",
     "local repo", 3,  "'.git'-folder",
     "remote<br>repo", 4, "Github"
-  ) %>%
+  ) |>
     ggplot() +
     {if(4 %in% locations)geom_polygon(data= tibble(x = c(3.5, 4.5, 4.5, 3.5), y = c(-.5, -.5, 5.5, 5.5)), aes(x, y), fill = "grey", alpha = 0.2)}+
     geom_segment(data = ~slice(., locations),aes(x = x,y = 0, xend = x),yend = 5)+

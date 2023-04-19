@@ -44,18 +44,18 @@ instead of writing:
 
 ```{r eval = FALSE}
 
-wildschwein <- wildschwein %>%
-  group_by(TierID) %>% 
-  mutate(timelag_sec = as.numeric(difftime(lead(DatetimeUTC), DatetimeUTC, units="secs"))) %>% 
-  mutate(timelag_min=as.numeric(difftime(lead(DatetimeUTC), DatetimeUTC, units="mins"))) %>% 
+wildschwein <- wildschwein |>
+  group_by(TierID) |> 
+  mutate(timelag_sec = as.numeric(difftime(lead(DatetimeUTC), DatetimeUTC, units="secs"))) |> 
+  mutate(timelag_min=as.numeric(difftime(lead(DatetimeUTC), DatetimeUTC, units="mins"))) |> 
   mutate(timelag_hours=as.numeric(difftime(lead(DatetimeUTC), DatetimeUTC, units="hours"))) 
 ```
 
 you can write this:
 
 ```{r eval = FALSE}
-wildschwein <- wildschwein %>%
-  group_by(TierID) %>% 
+wildschwein <- wildschwein |>
+  group_by(TierID) |> 
   mutate(
     timelag_sec = as.numeric(difftime(lead(DatetimeUTC), DatetimeUTC, units="secs")),
     timelag_min=as.numeric(difftime(lead(DatetimeUTC), DatetimeUTC, units="mins")),
@@ -75,9 +75,9 @@ wildschwein <- wildschwein %>%
 
 
 ```{r eval = FALSE}
-wildschwein_BE %>% 
-   st_drop_geometry() %>%   #<- removes the geometry column
-   group_by(TierID) %>% 
+wildschwein_BE |> 
+   st_drop_geometry() |>   #<- removes the geometry column
+   group_by(TierID) |> 
    summarise(mindate = min(DatetimeUTC)) 
 ```
 
@@ -141,9 +141,9 @@ library(purrr)
 caro_subset <- map(c(3,6,9), function(x){
   caro_subset = caro[seq(1, nrow(caro), x), ]
   
-  caro_subset %>%
-    mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC, units='sec'))) %>%
-    mutate(steplength = sqrt( (E-lead(E,1))^2 + (N-lead(N,1))^2)) %>%
+  caro_subset |>
+    mutate(timelag = as.numeric(difftime(lead(DatetimeUTC),DatetimeUTC, units='sec'))) |>
+    mutate(steplength = sqrt( (E-lead(E,1))^2 + (N-lead(N,1))^2)) |>
     mutate(speed=steplength/timelag)
   
 })
